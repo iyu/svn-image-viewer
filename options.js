@@ -61,7 +61,7 @@ function reloadByAlways() {
 document.getElementById('save').addEventListener('click', () => {
   const value = document.getElementById('url').value;
   const urls = getLocalStorageUrls();
-  if (value && urls.indexOf(value) >= 0) {
+  if (value && urls.indexOf(value) === -1) {
     urls.push(value);
     localStorage.setItem('svn_urls', urls);
     reloadByUrls();
