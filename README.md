@@ -14,6 +14,8 @@ SVNListParentPathで一覧表示されている画像をプレビュー表示す
 </li>
 ```
 
+Audioファイルにも対応しました
+
 ## Installation
 chromeでしか動きません
 
@@ -38,7 +40,7 @@ git cloneしてきてdistディレクトリを読み込むことでも追加で�
 ### Options
 
 - svn\_url Viewerを適用するurlを設定する 最低1つ以上登録しないと何も動きません
-- always 通常はボタンクリックで発動するが対象ページに来たら常時実行する (必読:注意事項)
+- immediate 通常はボタンクリックでモード選択ポップアップが表示されるがモード選択を飛ばして即時実行する
   - LISTモード ファイルパスと同時に画像も一覧表示される
   - MouseOverモード ファイルパスにマウスオーバーすると画像が表示される(未実装)
 
@@ -49,10 +51,10 @@ git cloneしてきてdistディレクトリを読み込むことでも追加で�
 
 考えられる注意点
 - 1ディレクトリのファイル数が多すぎて
- - JSの処理が重くなりChromeが固まる
-  - 重い処理はしてないですが限度はあります
- - imgタグによって大量にhttpリクエストが飛びsvnサーバーやApache等に負荷がかかる
-  - svn checkoutできる容量であれば問題ないと思う 負荷限界テストはしてないので自己責任
+  - JSの処理が重くなりChromeが固まる
+    - 重い処理はしてないですが限度はあります
+  - imgタグによって大量にhttpリクエストが飛びsvnサーバーやApache等に負荷がかかる
+    - svn checkoutできる容量であれば問題ないと思う 負荷限界テストはしてないので自己責任
 
 ## Development
 下記のようなDOM構造から
@@ -62,6 +64,9 @@ git cloneしてきてdistディレクトリを読み込むことでも追加で�
 </li>
 <li>
   <a href="image2.png">image2.png</a>
+</li>
+<li>
+  <a href="audio.mp3">audio.mp3</a>
 </li>
 ```
 下記のようなDOM構造に書き換えている
@@ -74,6 +79,10 @@ git cloneしてきてdistディレクトリを読み込むことでも追加で�
   <a href="image2.png">image2.png</a>
   <img src="image2.png">
 </li>
+<li>
+  <a href="audio.mp3">audio.mp3</a>
+  <audio src="audio.mp3" cntrols></audio>
+</li>
 ```
 
-optionページにてlocalStorageにSVNのURLを登録、対象URLにアクセスしたときにページアクションを表示
+optionページにてstorageにSVNのURLを登録、対象URLにアクセスしたときにページアクションを表示
