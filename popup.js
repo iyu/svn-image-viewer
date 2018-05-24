@@ -4,7 +4,7 @@ function execute(code) {
   chrome.tabs.executeScript(null, { code });
 }
 
-document.getElementById('list').addEventListener('click', () => {
+function list() {
   execute(`
   {
     const list = document.getElementsByTagName('li');
@@ -24,7 +24,22 @@ document.getElementById('list').addEventListener('click', () => {
     }
   }
   `);
+}
+
+chrome.storage.local.get({
+  immediate: false,
+  mode: null,
+}, ({ immediate, mode }) => {
+  if (immediate) {
+    if (mode === 'list') {
+      list();
+    } else if (mode === 'mouse') {
+    }
+    window.close();
+  }
 });
+
+document.getElementById('list').addEventListener('click', list);
 
 document.getElementById('mouse-over').addEventListener('click', () => {
   execute('');
