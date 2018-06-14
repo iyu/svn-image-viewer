@@ -19,6 +19,7 @@ function list() {
         const audio = document.createElement('audio');
         audio.setAttribute('src', href);
         audio.setAttribute('controls', 'controls');
+        audio.setAttribute('preload', 'none');
         li.append(audio);
       }
     }
